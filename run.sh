@@ -1,3 +1,2 @@
 #!/bin/bash
-gcc *.c libft/libft.a minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
-./a.out 42.fdf
+gcc -g *.c libft/libft.a minilibx_macos/libmlx.a -framework OpenGL -framework AppKit

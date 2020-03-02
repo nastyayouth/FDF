@@ -6,7 +6,7 @@
 /*   By: eestell <eestell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 00:02:49 by eestell           #+#    #+#             */
-/*   Updated: 2020/02/25 06:48:18 by eestell          ###   ########.fr       */
+/*   Updated: 2020/03/02 13:23:36 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int		get_height(char	*file_name)
 {
-	char *line;
+	char *line = NULL; /* added = NULL*/
 	int fd;
 	int height;
 

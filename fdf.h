@@ -16,6 +16,8 @@ typedef		struct
 	int		color;
 	int		shift_x;
 	int		shift_y;
+	float	angle;
+	float	transform;
 
 	void	*mlx_ptr;
 	void	*win_ptr;
