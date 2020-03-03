@@ -13,7 +13,7 @@ typedef		struct
 	int		height;
 	int		**z_matrix;
 	int		zoom;
-	int		color;
+	int		**color;
 	int		shift_x;
 	int		shift_y;
 	float	angle;
@@ -23,9 +23,11 @@ typedef		struct
 	void	*win_ptr;
 }			fdf;
 
-void		read_file(char *file_name, fdf *data);
+int		read_file(char *file_name, fdf *data);
 void		bresenbam(float x, float y, float x1, float y1, fdf *data);
 void    	draw(fdf *data);
+char		*ft_strchr(const char *s, int c);
+char		*ft_strcpy(char *dest, char const *src);
 
 
 #endif

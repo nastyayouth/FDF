@@ -6,13 +6,41 @@
 /*   By: eestell <eestell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 00:02:49 by eestell           #+#    #+#             */
-/*   Updated: 2020/03/02 13:23:36 by eestell          ###   ########.fr       */
+/*   Updated: 2020/03/03 15:59:07 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdlib.h>
 
+int		ft_validate(char *line)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		j = 0;
+		if ((line[i] <0 || line[i] > 9) && line[i] != ' ' && line[i] != '\0' && line[i] != ',')
+			return (0);
+		if (line[i] == ',' && (line[i-1]>0 || line[i-1] <9) && line[i+1] == 0 && line[i+2] == 'x')
+		{
+			i+=2;
+			while (j < 6)
+			{
+				if (line[i+j] < 'A' || line[i+j] > 'B')
+					return (0);
+				j++;
+			}
+
+		}
+		else 
+			return (0);
+			
+	}
+	return (1);
+}
 int		get_height(char	*file_name)
 {
 	char *line = NULL; /* added = NULL*/
@@ -44,22 +72,33 @@ int		get_width(char	*file_name)
 	return(width);
 }
 
-void fill_matrix(int *z_line, char *line)
+void fill_matrix(int *z_line, char *line, int *colored)
 {
 	char	**nums;
 	int		i;
+	int		n;
+
 	i = 0;
 	nums = ft_strsplit(line, ' ');
 	while(nums[i])
 	{
 		z_line[i] = ft_atoi(nums[i]);
+
+		//colored[i] = (int)ft_strchr(nums[i], ',');
+		//colored[i] = 0xff0000;
+		if (ft_strchr(nums[i], ','))
+			colored[i] = (int)ft_strchr(nums[i], ',');
+		else
+			colored[i] = 0xffff00;	
+		//printf ("%d\n",colored[i]);
+		/*TEST COLOR!!!!*/
 		free(nums[i]);
 		i++;
 	}
 	free(nums);
 }
 
-void	read_file(char *file_name, fdf *data)
+int	read_file(char *file_name, fdf *data)
 {
 	int		fd;
 	char	*line;
@@ -68,17 +107,28 @@ void	read_file(char *file_name, fdf *data)
 	data->height = get_height(file_name);
 	data->width = get_width(file_name);
 	data->z_matrix = (int**)malloc(sizeof(int*)*(data->height + 1));
+	data->color = (int**)malloc(sizeof(int*)*(data->height + 1)); //
 	i = 0;
 	while (i <= data->height)
-		data->z_matrix[i++] = (int*)malloc(sizeof(int) * (data->width + 1));
+	{
+		data->z_matrix[i] = (int*)malloc(sizeof(int) * (data->width + 1));
+		data->color[i] = (int*)malloc(sizeof(int) * (data->width + 1)); //
+		i++;
+	}
+		
 	fd = open(file_name, O_RDONLY, 0);
 	i = 0;
 	while (get_next_line(fd, &line))
 	{
-		fill_matrix(data->z_matrix[i], line);
+		fill_matrix(data->z_matrix[i], line, data->color[i]);
+		if (!ft_validate(line))
+			return (0);
+		printf("%s\n", line);
 		free(line);
 		i++;
 	}
 	close(fd);
-	data->z_matrix[i] = NULL;	
+	data->z_matrix[i] = NULL;
+	data->color[i] = NULL;
+	return (1);
 }

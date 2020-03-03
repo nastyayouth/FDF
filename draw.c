@@ -6,7 +6,7 @@
 /*   By: eestell <eestell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 01:52:13 by eestell           #+#    #+#             */
-/*   Updated: 2020/03/02 15:10:24 by eestell          ###   ########.fr       */
+/*   Updated: 2020/03/03 15:40:59 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ void        bresenbam(float x, float y, float x1, float y1, fdf *data)
     int     max;
     int     z;
     int     z1;
+    int     x_n;
+    int     y_n;
+
+    y_n = y;
+    x_n = x;
        
     z = (data->z_matrix[(int)y][(int)x]);
     z1 = (data->z_matrix[(int)y1][(int)x1]);
@@ -45,7 +50,7 @@ void        bresenbam(float x, float y, float x1, float y1, fdf *data)
     x1*= data->zoom;
     y1*= data->zoom;
 
-    data->color = (z || z1) ?  0xff0000  : 0xffffff;
+    //data->color = (z || z1) ?  0xff0000  : 0xffffff;
   
     
     isometric(&x, &y, z, data);
@@ -58,13 +63,7 @@ void        bresenbam(float x, float y, float x1, float y1, fdf *data)
     x_step = x1 - x;
     y_step = y1 - y;
 
-    /*x +=200;
-    y +=200;
-    x1 +=200;
-    y1 +=200;
-    x_step = x1 - x;
-    y_step = y1 - y;*/
-   
+       
     max = MAX1((MOD(x_step) ), (MOD(y_step) ));
     x_step =  (x_step / max);
     y_step = (y_step / max); 
@@ -73,7 +72,7 @@ void        bresenbam(float x, float y, float x1, float y1, fdf *data)
 
     while ((int)(x - x1) || (int)(y - y1))
     {
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color);
+        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color[(int)y_n][(int)x_n]);
         x += x_step;
         y += y_step;
         //printf("%f\n", x_step);
