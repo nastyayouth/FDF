@@ -6,7 +6,7 @@
 /*   By: eestell <eestell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 00:02:49 by eestell           #+#    #+#             */
-/*   Updated: 2020/03/07 20:45:55 by eestell          ###   ########.fr       */
+/*   Updated: 2020/03/07 21:36:33 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ void fill_matrix(int *z_line, const char *line, int *colored)
 		//colored[i] = 0xff0000;
 		if (ft_strchr(nums[i], ','))
 			{
-				colored[i] = (int)ft_strchr(nums[i], ',');
-				//printf("%d  ", colored[i]);
+				colored[i] = ft_strtol(ft_strchr(nums[i], ','), NULL, 0);
+				printf("%d  ", colored[i]);
 			}
 		else
 			colored[i] = 0xffff00;	
@@ -148,9 +148,7 @@ int	read_file(char *file_name, fdf *data)
 	i = 0;
 	while (get_next_line(fd, &line))
 	{
-		printf("%d", test);
-		if (test != 1)
-			return (0);	
+
 		fill_matrix(data->z_matrix[i], line, data->color[i]);
 		/*if (ft_wdcounter(line, ' ') != (data->width))
 		{

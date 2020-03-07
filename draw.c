@@ -6,7 +6,7 @@
 /*   By: eestell <eestell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 01:52:13 by eestell           #+#    #+#             */
-/*   Updated: 2020/03/07 17:46:35 by eestell          ###   ########.fr       */
+/*   Updated: 2020/03/07 21:52:08 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void        bresenbam(float x, float y, float x1, float y1, fdf *data)
     x1*= data->zoom;
     y1*= data->zoom;
 
-    //data->color = (z || z1) ?  0xff0000  : 0xffffff;
-  
     
     isometric(&x, &y, z, data);
     isometric(&x1, &y1, z1, data);

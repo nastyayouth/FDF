@@ -15,6 +15,7 @@ typedef		struct
 	int		**z_matrix;
 	int		zoom;
 	int		**color;
+	char	f_color;
 	int		shift_x;
 	int		shift_y;
 	float	angle;
@@ -30,6 +31,12 @@ void    	draw(fdf *data);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strcpy(char *dest, char const *src);
 void		menu(fdf *param);
+int			ft_isalpha(int c);
+int			ft_isdigit(int c);
+long 		ft_strtol(const char *nptr, char **endptr, register int base);
+int			ft_toupper(int c);
+
+
 
 
 #endif
