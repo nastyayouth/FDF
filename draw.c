@@ -6,7 +6,7 @@
 /*   By: eestell <eestell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 01:52:13 by eestell           #+#    #+#             */
-/*   Updated: 2020/03/03 15:40:59 by eestell          ###   ########.fr       */
+/*   Updated: 2020/03/07 17:46:35 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ void        bresenbam(float x, float y, float x1, float y1, fdf *data)
         mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color[(int)y_n][(int)x_n]);
         x += x_step;
         y += y_step;
-        //printf("%f\n", x_step);
-        //printf("%f\n", y_step);
     }
 }
 
@@ -85,6 +83,7 @@ void    draw(fdf *data)
     int     x;
     int     y;
 
+    menu(data);
     y = 0;
     while (y < data->height)
     {

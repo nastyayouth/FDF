@@ -5,6 +5,7 @@
 #include "minilibx_macos/mlx.h"
 #include <stdio.h> /*dot foget to dell printf*/
 #include <fcntl.h>
+# define PRM matrix[0][0]
 //#include "get_next_line.h"
 
 typedef		struct
@@ -23,11 +24,12 @@ typedef		struct
 	void	*win_ptr;
 }			fdf;
 
-int		read_file(char *file_name, fdf *data);
+int			read_file(char *file_name, fdf *data);
 void		bresenbam(float x, float y, float x1, float y1, fdf *data);
 void    	draw(fdf *data);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strcpy(char *dest, char const *src);
+void		menu(fdf *param);
 
 
 #endif
