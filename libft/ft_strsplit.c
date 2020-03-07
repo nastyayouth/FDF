@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eestell <eestell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:51:15 by dshala            #+#    #+#             */
-/*   Updated: 2019/09/19 12:54:43 by dshala           ###   ########.fr       */
+/*   Updated: 2020/03/07 19:38:35 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char				**ft_strsplit(char const *s, char c)
 	size_t	countc;
 	size_t	count;
 	size_t	a;
-
+	
 	a = 0;
 	if (!s)
 		return (NULL);
